@@ -123,7 +123,7 @@ Update User Info
           <div><label for="">Company:</label></div>
           <div class="input-group mb-3">
             @php
-            $comps = DB::select('select company from partners');
+            $comps = DB::select('select company from partners where archived is null');
             @endphp
             <select class="form-control" name="company" <?php if($role=='owner'){ echo $isDisabled;} ?> >
               @if ($company=='MAGIC LINE')

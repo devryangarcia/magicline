@@ -72,7 +72,7 @@ class UserController extends Controller
             'fname'=>'required|min:3',
             'lname'=>'required|min:3',
             'username'=>'required|min:4|unique:users',
-            'email'=>'required|email|unique:users',
+            'email'=>'nullable|email|unique:users',
             'company'=>'required',
             'password'=>'required|min:5|max:20',
             'role'=>'required',
@@ -83,11 +83,16 @@ class UserController extends Controller
                 'accesslists'=>'required',
             ]);
         }
+        if ($request->email) {
+            $email = $request->email;
+        } else {
+            $email = null;
+        }
         $user = new User;
         $user->fname = $request->fname;
         $user->lname = $request->lname;
         $user->username = $request->username;
-        $user->email = $request->email;
+        $user->email = $email;
         $user->company = $request->company;
         $user->password = Hash::make($request->password);
         $user->role = $request->role;
@@ -148,6 +153,11 @@ class UserController extends Controller
         $lname = $request->lname;
         $oldusername = $request->oldusername;
         $username = $request->username;
+        if ($request->email) {
+            $email = $request->email;
+        } else {
+            $email = null;
+        }
         $email = $request->email;
         $company = $request->company;
         $role = $request->role;
