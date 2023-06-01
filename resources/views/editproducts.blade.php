@@ -2,6 +2,12 @@
 @section('title')
 Edit Product
 @endsection
+@section('page-back')
+<li class="breadcrumb-item"><a href="{{url('admin/partnerproduct/'.$product->company)}}">{{$product->company}}</a></li>
+@endsection
+@section('page-active')
+Edit Product
+@endsection
 @section('links')
     
 <!-- Select2 -->
